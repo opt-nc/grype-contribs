@@ -3,7 +3,7 @@
 The aim of this repo is to summarize some resources around [Grype](https://github.com/anchore/grype)
 to take hte best ouf this great tool.
 
-# 🧰 Prerequsiites
+# 🧰 Prerequisites
 
 For an optimal usage of these resources, you'll need :
 
@@ -18,6 +18,8 @@ For an optimal usage of these resources, you'll need :
 brew tap anchore/grype
 brew install grype
 ```
+
+We'll use [`termgraph`](https://github.com/mkaz/termgraph), _"A command-line tool that draws basic graphs in the terminal, " :
 
 ```
 python3 -m pip install termgraph
