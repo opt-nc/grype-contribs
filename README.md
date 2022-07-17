@@ -10,7 +10,6 @@ For an optimal usage of these resources, you'll need :
 - `git`
 - [`brew`](https://brew.sh/) installed
 - `python3` and `pip`
-- `grype` installed
 
 ##  Install tools
 
