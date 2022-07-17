@@ -1,74 +1,76 @@
-# About
+# ❔ About
 
-A set of resources around grype
+The aim of this repo is to summarize some resources around [Grype](https://github.com/anchore/grype)
+to take hte best ouf this great tool.
 
+# 🧰 Prerequsiites
 
-https://github.com/anchore/grype/issues/724#issuecomment-1139563814
-https://github.com/anchore/grype#using-templates
-https://github.com/anchore/grype/releases/tag/v0.42.0
-DEV.to
-
-Sprig Function Documentation : http://masterminds.github.io/sprig/
-GO template https://pkg.go.dev/text/template#hdr-Functions
-
-https://github.com/anchore/grype/issues/826
-
-# Prerequsites
+For an optimal usage of these resources, you'll need :
 
 - `git`
-- `brew` installed
+- [`brew`](https://brew.sh/) installed
 - `python3` and `pip`
+- `grype` installed
 
-# Install steps
-
-
-## :one: grype
-
+##  Install tools
+`
 ```
 brew tap anchore/grype
 brew install grype
 ```
 
-## :two: Reporting tools
-
-
 ```
 python3 -m pip install termgraph
 ```
 
-# :rocket: Getting started
+👉 You are ready.
 
-## Aggregated report in the terminal
+
+
+
+## 📜 Templating
+
+Since [`v0.42.0`](https://github.com/anchore/grype/releases/tag/v0.42.0), and
+its issue [`#724`](https://github.com/anchore/grype/issues/724#issuecomment-1139563814)
+it is possible to transform analysis report with [templates](https://github.com/anchore/grype#using-templates).
+
+This feature makes it possible to build nicely useable and highly customizable reports.
+
+
+### 📊  Aggregated report in the terminal (`termgraph`)
 
 ```shell
 clear
-export IMAGE=nginx:latest # optnc/api-transitaires
+mkdir work
+ # Put your image here
+export IMAGE=nginx:latest
 echo "☝️ About to analyze $IMAGE with grype ❕"
-grype $IMAGE -o template -t tmpl/csv-vulnerability_id-severity-no-headers.tmpl > analysis.csv
-cat analysis.csv
+grype $IMAGE -o template -t tmpl/csv-vulnerability_id-severity-no-headers.tmpl > work/analysis.csv
+cat work/analysis.csv
 echo ""
 echo "✅ grype analysis done."
-echo "$(tail -n +2 analysis.csv)" > analysis.csv
+echo "$(tail -n +2 work/analysis.csv)" > work/analysis.csv
 echo "➕ Aggregating datas :"
-awk -F, '{a[$1]+=$2;}END{for(i in a)print i", "a[i];}' analysis.csv > analysis-aggregated.csv
-cat analysis-aggregated.csv
+awk -F, '{a[$1]+=$2;}END{for(i in a)print i", "a[i];}' work/analysis.csv > work/analysis-aggregated.csv
+cat work/analysis-aggregated.csv
 echo "📊 Charting analysis"
-termgraph  analysis-aggregated.csv --title "🛡️  Grype report for [${IMAGE}] 🐳"
+termgraph  work/analysis-aggregated.csv --title "🛡️  Grype report for [${IMAGE}] 🐳"
 # Visit https://github.com/opt-nc/grype-tools/ for more tools around reporting and templates
 ```
 
-## Html report
+###  Html report
 
 ```
 clear
-export IMAGE=optnc/api-transitaires
+export IMAGE=ninx:latest
 echo "☝️ About to analyze $IMAGE with grype ❕"
-grype $IMAGE -o template -t tmpl/html-table.tmpl > analysis.html
-firefox analysis.html
+grype $IMAGE -o template -t tmpl/html-table.tmpl > work/analysis.html
+firefox work/analysis.html
 ```
 
-## Jupyter NoteBook
+### Jupyter NoteBook
 
+- `TODO`
 
 # TODOS
 
