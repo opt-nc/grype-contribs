@@ -23,6 +23,13 @@ brew install grype
 python3 -m pip install termgraph
 ```
 
+Finally clone this repo : 
+
+```
+gh repo clone opt-nc/grype-contribs
+cd grype-contribs
+```
+
 👉 You are ready.
 
 
