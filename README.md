@@ -26,8 +26,6 @@ python3 -m pip install termgraph
 👉 You are ready.
 
 
-
-
 ## 📜 Templating
 
 Since [`v0.42.0`](https://github.com/anchore/grype/releases/tag/v0.42.0), and
@@ -58,11 +56,11 @@ termgraph  work/analysis-aggregated.csv --title "🛡️  Grype report for [${IM
 # Visit https://github.com/opt-nc/grype-tools/ for more tools around reporting and templates
 ```
 
-###  Html report
+### 🔗 Html report
 
 ```
 clear
-export IMAGE=ninx:latest
+export IMAGE=nginx:latest
 echo "☝️ About to analyze $IMAGE with grype ❕"
 grype $IMAGE -o template -t tmpl/html-table.tmpl > work/analysis.html
 firefox work/analysis.html
@@ -76,6 +74,7 @@ firefox work/analysis.html
 
 
 ## Enhanced html report
+
 - html report -> add href to cves
 - replace severity by a css badge
 - replace state with a css badge
@@ -83,14 +82,12 @@ firefox work/analysis.html
 - style name,installed columns a code style
 - link packages to https://pkgs.org/about/
 
-## toolchain
 
+## 💡 Ideas
+
+- Concatenate multiple reports within a same csv for advanced JupterNotebook and other reporting tools (OpenSearch, ELK, PowerBI,...)
+- Jupter NoteBooks on `json`
+- Nicer HTML reports
 - Package as a Makefile
 - Develop markdown template and implement pandoc toolchain for various exports
 - JupyterBook report template based on raw csv export
-
-## Ideas
-
-- Concatenate multiple reports within a same csv for advanced JupterNotebook and other reporting tools (OpenSearch, ELK, PowerBI,...)
-- Jupter NoteBook sur le json
-- HTML sur le json
