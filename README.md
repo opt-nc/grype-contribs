@@ -18,7 +18,7 @@ brew tap anchore/grype
 brew install grype
 ```
 
-We'll use [`termgraph`](https://github.com/mkaz/termgraph), _"A command-line tool that draws basic graphs in the terminal, " :
+We'll use [`termgraph`](https://github.com/mkaz/termgraph),  _"A command-line tool that draws basic graphs in the terminal,"_ :
 
 ```
 python3 -m pip install termgraph
