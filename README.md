@@ -13,7 +13,7 @@ For an optimal usage of these resources, you'll need :
 - `grype` installed
 
 ##  Install tools
-`
+
 ```
 brew tap anchore/grype
 brew install grype
