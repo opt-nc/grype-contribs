@@ -1,7 +1,7 @@
 # ❔ About
 
 The aim of this repo is to summarize some resources around [Grype](https://github.com/anchore/grype)
-to take hte best ouf this great tool.
+to take the best ouf this great tool.
 
 # 🧰 Prerequisites
 
