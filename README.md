@@ -47,7 +47,6 @@ This feature makes it possible to build nicely useable and highly customizable r
 
 ```shell
 clear
-mkdir work
  # Put your image here
 export IMAGE=nginx:latest
 echo "☝️ About to analyze $IMAGE with grype ❕"
