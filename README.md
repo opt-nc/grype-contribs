@@ -1,7 +1,14 @@
 # ❔ About
 
 The aim of this repo is to summarize some resources around [Grype](https://github.com/anchore/grype)
-to take the best ouf this great tool.
+to **take the best ouf this great tool.**
+
+# 🔖 Discover `grype-contribs`
+
+To learn more about this project, take a glance at : 
+
+- [📢 Grype 0.42.0 is out... and hello grype-contribs 👶 ](https://dev.to/optnc/grype-0420-is-out-and-hello-grype-contribs-3g4i)
+- 📺 [Youtbe demo](https://youtu.be/C2-i_fc5fKk)
 
 [![asciicast](https://asciinema.org/a/RoLhz0Ehe0sp74wA1NNipB0PH.svg)](https://asciinema.org/a/RoLhz0Ehe0sp74wA1NNipB0PH)
 
