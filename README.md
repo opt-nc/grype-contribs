@@ -91,7 +91,7 @@ firefox work/analysis.html
 
 ## Enhanced html report
 
-- html report -> add href to cves
+- ~~html report -> add href to cves~~
 - replace severity by a css badge
 - replace state with a css badge
 - replace type by css badge
