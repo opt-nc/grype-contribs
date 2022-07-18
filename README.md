@@ -3,6 +3,8 @@
 The aim of this repo is to summarize some resources around [Grype](https://github.com/anchore/grype)
 to take the best ouf this great tool.
 
+[![asciicast](https://asciinema.org/a/RoLhz0Ehe0sp74wA1NNipB0PH.svg)](https://asciinema.org/a/RoLhz0Ehe0sp74wA1NNipB0PH)
+
 # 🧰 Prerequisites
 
 For an optimal usage of these resources, you'll need :
