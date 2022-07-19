@@ -82,26 +82,9 @@ grype $IMAGE -o template -t tmpl/html-table.tmpl > work/analysis.html
 firefox work/analysis.html
 ```
 
-### Jupyter NoteBook
-
-- `TODO`
-
-# TODOS
-
-
-## Enhanced html report
-
-- ~~html report -> add href to cves~~
-- replace severity by a css badge
-- replace state with a css badge
-- replace type by css badge
-- style name,installed columns a code style
-- link packages to https://pkgs.org/about/
-- grab and valorize datas the best we can cf available datas `grype -o json nginx:latest`
-
-
 ## 💡 Ideas
 
+- [Better `html` template](https://github.com/opt-nc/grype-contribs/issues/5) 
 - Concatenate multiple reports within a same csv for advanced JupterNotebook and other reporting tools (OpenSearch, ELK, PowerBI,...)
 - Jupter NoteBooks on `json`
 - Nicer HTML reports
