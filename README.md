@@ -97,6 +97,7 @@ firefox work/analysis.html
 - replace type by css badge
 - style name,installed columns a code style
 - link packages to https://pkgs.org/about/
+- grab and valorize datas the best we can cf available datas `grype -o json nginx:latest`
 
 
 ## 💡 Ideas
