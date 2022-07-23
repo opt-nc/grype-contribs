@@ -24,7 +24,7 @@ Ouput sample :
 Below the query to get the count of of each `severity` :
 
 ```
-# TODO cf 
+# TODO cf https://github.com/opt-nc/grype-contribs/issues/8
 # grype nginx:latest -o json | ... | @csv'
 ```
 
