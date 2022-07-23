@@ -18,3 +18,20 @@ Ouput sample :
 "CVE-2004-0971","Negligible","debian:distro:debian:11","https://security-tracker.debian.org/tracker/CVE-2004-0971"
 "CVE-2005-2541","Negligible","debian:distro:debian:11","https://security-tracker.debian.org/tracker/CVE-2005-2541"
 ```
+
+## Group vulnerabilities by `severity`
+
+Below the query to get the count of of each `severity` :
+
+```
+# TODO cf 
+# grype nginx:latest -o json | ... | @csv'
+```
+
+Output sample :
+
+```csv
+"Negligible",0
+"Low",4
+"High",10
+```
