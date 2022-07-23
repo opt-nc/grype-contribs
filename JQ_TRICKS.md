@@ -21,7 +21,7 @@ Ouput sample :
 
 ## Group vulnerabilities by `severity`
 
-Below the query to get the count of of each `severity` :
+Below the query to get the count of of each `severity`, see [dedicated issue](https://github.com/opt-nc/grype-contribs/issues/8) :
 
 ```
 # TODO cf https://github.com/opt-nc/grype-contribs/issues/8
