@@ -6,7 +6,7 @@ than the use of templates.
 ## List vulnerabilities as  `csv`
 
 ```
-grype nginx:latest -o json | jq -r '.matches | .[] | .vulnerability | [.id, .severity, .namespace, .dataSource] | @csv'
+ -o json | jq -r '.matches | .[] | .vulnerability | [.id, .severity, .namespace, .dataSource] | @csv'
 ```
 
 Ouput sample : 
@@ -25,7 +25,7 @@ Below the query to get the count of of each `severity`, see [dedicated issue](ht
 
 ```
 # TODO
-# grype nginx:latest -o json | ... | @csv'
+# -o json | ... | @csv'
 ```
 
 Output sample :
