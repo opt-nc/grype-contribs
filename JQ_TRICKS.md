@@ -25,13 +25,17 @@ Below the query to get the count of of each `severity`, see [dedicated issue](ht
 
 ```
 # TODO
-# -o json | ... | @csv'
+# -o json | jq -r '[.matches[].vulnerability | {severity}] | group_by(.severity) | [.[] | {severity: .[0].severity, count: . | length}]| to_entries as $row |  ( ( map(keys_unsorted ) | add | unique ) as $cols | ( [$cols] | flatten) ,  ( $row | .[] as $onerow | $onerow |( [ ( $cols |   map ($onerow.value[.] as $v | $v )  ) ]| flatten ) ) ) | @csv '
 ```
 
 Output sample :
 
 ```csv
-"Negligible",0
-"Low",4
-"High",10
+"count","severity"
+8,"Critical"
+26,"High"
+10,"Low"
+24,"Medium"
+82,"Negligible"
+4,"Unknown"
 ```
