@@ -24,8 +24,7 @@ Ouput sample :
 Below the query to get the count of of each `severity`, see [dedicated issue](https://github.com/opt-nc/grype-contribs/issues/8) :
 
 ```
-# TODO
-# -o json | jq -r '[.matches[].vulnerability | {severity}] | group_by(.severity) | [.[] | {severity: .[0].severity, count: . | length}]| to_entries as $row |  ( ( map(keys_unsorted ) | add | unique ) as $cols | ( [$cols] | flatten) ,  ( $row | .[] as $onerow | $onerow |( [ ( $cols |   map ($onerow.value[.] as $v | $v )  ) ]| flatten ) ) ) | @csv '
+-o json | jq -r '[.matches[].vulnerability | {severity}] | group_by(.severity) | [.[] | {severity: .[0].severity, count: . | length}]| to_entries as $row |  ( ( map(keys_unsorted ) | add | unique ) as $cols | ( [$cols] | flatten) ,  ( $row | .[] as $onerow | $onerow |( [ ( $cols |   map ($onerow.value[.] as $v | $v )  ) ]| flatten ) ) ) | @csv '
 ```
 
 Output sample :
@@ -38,4 +37,18 @@ Output sample :
 24,"Medium"
 82,"Negligible"
 4,"Unknown"
+```
+
+```shell
+-o json | jq -r '[.matches[].vulnerability | {severity}] | group_by(.severity) | [.[] | {severity: .[0].severity, count: . | length}]| to_entries as $row |  ( ( map(keys_unsorted ) | add | unique ) as $cols | ( [$cols] | flatten) ,  ( $row | .[] as $onerow | $onerow |( [ ( $cols |   map ($onerow.value[.] as $v | $v )  ) ]| flatten ) ) ) | @tsv '
+```
+
+```
+count	severity
+8	Critical
+26	High
+10	Low
+24	Medium
+82	Negligible
+4	Unknown
 ```
