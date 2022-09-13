@@ -23,7 +23,8 @@ Ouput sample :
 
 Below the query to get the count of of each `severity`, see [dedicated issue](https://github.com/opt-nc/grype-contribs/issues/8) :
 
-```
+
+```shell
 -o json | jq -r '[.matches[].vulnerability | {severity}] | group_by(.severity) | [.[] | {severity: .[0].severity, count: . | length}]| to_entries as $row |  ( ( map(keys_unsorted ) | add | unique ) as $cols | ( [$cols] | flatten) ,  ( $row | .[] as $onerow | $onerow |( [ ( $cols |   map ($onerow.value[.] as $v | $v )  ) ]| flatten ) ) ) | @csv '
 ```
 
@@ -42,6 +43,7 @@ Output sample :
 ```shell
 -o json | jq -r '[.matches[].vulnerability | {severity}] | group_by(.severity) | [.[] | {severity: .[0].severity, count: . | length}]| to_entries as $row |  ( ( map(keys_unsorted ) | add | unique ) as $cols | ( [$cols] | flatten) ,  ( $row | .[] as $onerow | $onerow |( [ ( $cols |   map ($onerow.value[.] as $v | $v )  ) ]| flatten ) ) ) | @tsv '
 ```
+Output sample :
 
 ```
 count	severity
