@@ -26,32 +26,32 @@ Below the query to get the count of of each `severity :
 ### CSV output
 
 ```shell
--o json | jq -r '[.matches[].vulnerability | {severity}] | group_by(.severity) | [.[] | {severity: .[0].severity, count: . | length}]| to_entries as $row |  ( ( map(keys_unsorted ) | add | unique ) as $cols | ( [$cols] | flatten) ,  ( $row | .[] as $onerow | $onerow |( [ ( $cols |   map ($onerow.value[.] as $v | $v )  ) ]| flatten ) ) ) | @csv '
+-o json | jq -r '[.matches[].vulnerability | {severity}] | group_by(.severity) | [.[] | {severity: .[0].severity, count: . | length}]|(.[0] | keys_unsorted) as $keys | ([$keys] + map([.[ $keys[] ]])) [] | @csv'
 ```
 
 Output sample :
 
 ```csv
-"count","severity"
-8,"Critical"
-26,"High"
-10,"Low"
-24,"Medium"
-82,"Negligible"
-4,"Unknown"
+"severity","count"
+"Critical",8
+"High",26
+"Low",10
+"Medium",24
+"Negligible",82
+"Unknown",4
 ```
 ### Tabular output
 ```shell
--o json | jq -r '[.matches[].vulnerability | {severity}] | group_by(.severity) | [.[] | {severity: .[0].severity, count: . | length}]| to_entries as $row |  ( ( map(keys_unsorted ) | add | unique ) as $cols | ( [$cols] | flatten) ,  ( $row | .[] as $onerow | $onerow |( [ ( $cols |   map ($onerow.value[.] as $v | $v )  ) ]| flatten ) ) ) | @tsv '
+-o json | jq -r '[.matches[].vulnerability | {severity}] | group_by(.severity) | [.[] | {severity: .[0].severity, count: . | length}]|(.[0] | keys_unsorted) as $keys | ([$keys] + map([.[ $keys[] ]])) [] | @tsv '
 ```
 Output sample :
 
 ```
-count	severity
-8	Critical
-26	High
-10	Low
-24	Medium
-82	Negligible
-4	Unknown
+severity	count
+Critical	8
+High	26
+Low	10
+Medium	24
+Negligible	82
+Unknown	4
 ```
