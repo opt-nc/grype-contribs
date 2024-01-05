@@ -74,12 +74,37 @@ termgraph  work/analysis-aggregated.csv --title "🛡️  Grype report for [${IM
 
 ### 🔗 Html report
 
-```
+With installed version:
+```sh
 clear
 export IMAGE=nginx:latest
 echo "☝️ About to analyze $IMAGE with grype ❕"
 grype $IMAGE -o template -t tmpl/html-table.tmpl > work/analysis.html
 firefox work/analysis.html
+```
+
+Or with docker:
+```sh
+clear
+export IMAGE=nginx:latest
+echo "☝️ About to analyze $IMAGE with grype ❕"
+
+docker run --rm \
+  -v ${PWD}/tmpl/html-table.tmpl:/config/html-table.tmpl:ro \
+  anchore/grype:latest \
+  \
+  $IMAGE -o template -t /config/html-table.tmpl > work/analysis.html
+
+open work/analysis.html
+```
+
+Depending on your needs, add the appropriate options as shown in grype [official documentation](https://github.com/anchore/grype):
+```sh
+# to scan scan a container running or images on host
+  --volume /var/run/docker.sock:/var/run/docker.sock
+
+# to access a private registry (with config.json configured on host)
+  -v ~/.docker/config.json:/config/config.json:ro -e "DOCKER_CONFIG=/config"
 ```
 
 ## 💡 Ideas
