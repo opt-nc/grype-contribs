@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1" charset="ISO-8859-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
   <title>Grype analysis</title>
   <script>
     function myFunction() {
@@ -65,7 +65,7 @@
       width: 94%;
       font-size: 16px;
       padding: 8px 20px 8px 40px;
-      border: 2px solid Tomato; // changing-colors
+      border: 2px solid #ddd; // changing-colors
       margin-bottom: 18px;
     }
 
@@ -103,9 +103,18 @@
 </head>
 
 <body>
-  <h2 style="text-align:center;background-color:DodgerBlue;color:White;">Identified Vulnerabilites</h2>
-  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search in all Fields...."
-    title="Type in a Search String" autofocus="autofocus">
+  <h2 style="text-align:center;background-color:rgb(4, 112, 155);color:White;">Identified vulnerabilities</h2>
+
+  <p><b>{{.Descriptor.Timestamp}} : {{.Source.Type}} &gt;&nbsp;
+      {{- if eq (.Source.Type) "image" -}} {{.Source.Target.UserInput}}
+      {{- else if eq (.Source.Type) "directory" -}} {{.Source.Target}}
+      {{- else if eq (.Source.Type) "file" -}} {{.Source.Target}}
+      {{- else -}} unknown
+      {{- end -}}
+  </b></p>
+
+  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filter..."
+    title="" autofocus="autofocus">
   <table id="myTable">
     <tr>
       <th>NAME</th>
@@ -117,16 +126,45 @@
       <th>STATE</th>
       <th>FIXED IN</th>
     </tr>
+
 {{- range .Matches}}
     <tr>
-      <td>"{{.Artifact.Name}}"</td>
-      <td>"{{.Artifact.Version}}"</td>
-      <td>"{{.Artifact.Type}}"</td>
-      <td><a href = "https://nvd.nist.gov/vuln/detail/{{.Vulnerability.ID}}">{{.Vulnerability.ID}}</a></td>
-      <td>"{{.Vulnerability.Severity}}"</td>
-      <td>"{{.Vulnerability.Description}}"</td>
-      <td>"{{.Vulnerability.Fix.State}}"</td>
-      <td>"{{.Vulnerability.Fix.Versions}}"</td>
+      <td>{{.Artifact.Name}}</td>
+      <td>{{.Artifact.Version}}</td>
+      <td>{{.Artifact.Type}}</td>
+
+      <td>
+      {{- if eq (printf "%.4s" .Vulnerability.ID) "CVE-" -}}
+        <a href="https://nvd.nist.gov/vuln/detail/{{.Vulnerability.ID}}">{{.Vulnerability.ID}}</a>
+      {{- else if eq (printf "%.5s" .Vulnerability.ID) "GHSA-" -}}
+        <a href="https://github.com/advisories/{{.Vulnerability.ID}}">{{.Vulnerability.ID}}</a>
+      {{- else -}}
+        {{.Vulnerability.ID -}}
+      {{- end -}}
+      </td>
+
+      <td style="background-color:
+        {{- if eq (printf "%.8s" .Vulnerability.Severity) "Critical" -}} #f86c6b
+        {{- else if eq (.Vulnerability.Severity) "High" -}} #fd8c00
+        {{- else if eq (.Vulnerability.Severity) "Medium" -}} #ffc107
+        {{- else if eq (.Vulnerability.Severity) "Low" -}} #4dbd74
+        {{- else if eq (.Vulnerability.Severity) "Negligible" -}} grey
+        {{- else -}} transparent
+        {{- end -}}
+      ;">{{.Vulnerability.Severity}}</td>
+
+      <td>{{html .Vulnerability.Description}}</td>
+
+      <td style="background-color:
+        {{- if eq (printf "%.8s" .Vulnerability.Fix.State) "fixed" -}} #f86c6b
+        {{- else if eq (.Vulnerability.Fix.State) "not-fixed" -}} #fd8c00
+        {{- else if eq (.Vulnerability.Fix.State) "wont-fix" -}} #ffc107
+        {{- else if eq (.Vulnerability.Fix.State) "unknown" -}} grey
+        {{- else -}} transparent
+        {{- end -}}
+      ;">{{.Vulnerability.Fix.State}}</td>
+
+      <td>{{.Vulnerability.Fix.Versions | join ", "}}</td>
     </tr>
 {{- end}}
   </table>
